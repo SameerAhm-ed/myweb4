@@ -18,6 +18,7 @@
         $varFN = $UserPfile["first_name"];
         $varLastN = $UserPfile["last_name"];
         $varUserN = $UserPfile["username"];
+        $varUserPic = $UserPfile["profile_pic"];
     }
     else {
         header("Location: index.php");
@@ -78,10 +79,12 @@
                 {
                     
 
-                    $SetPasswordEncrypt = md5($getPassword);
-                    $Query  = "insert into tbl_users (first_name,last_name,username,password,profile_pic) values('". $getFirstName."','".$getLastName."','". $getEmail ."','".$SetPasswordEncrypt."','".$varFilePath."')";
+                    // $SetPasswordEncrypt = md5($getPassword);
+                    // $Query  = "insert into tbl_users (first_name,last_name,username,password,profile_pic) values('". $getFirstName."','".$getLastName."','". $getEmail ."','".$SetPasswordEncrypt."','".$varFilePath."')";
+                    $Query = "UPDATE `tbl_users` SET first_name='$getFirstName', last_name='$getLastName' where id='$_SESSION[UserID]' ";
                     $rslt = mysqli_query($con,$Query);
-        
+                    $RecordShow = mysqli_fetch_assoc($rslt);                  
+                    
                     if($rslt)
                     {
                        if($varFileError == 0)
@@ -97,7 +100,6 @@
                     }
                 }
             //=================
-
            
         }
        
@@ -139,7 +141,7 @@
             <div class="form-group">
                 
                 <div class="col-sm-10">
-                    <img id="uploadPreview"  src="" style="width:100px; height:100px; border:1px solid black;" />
+                    <img id="uploadPreview"  src="<?php if(isset($varUserPic)) {echo $varUserPic;} else {echo "";} ?>" style="width:100px; height:100px; border:1px solid black;" />
                 </div>
             </div>   
 

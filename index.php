@@ -21,6 +21,8 @@
 <body>
 <?php
     include('navbar.php');
+
+    echo "<h1>Hi Welcome, ".$_SESSION["UserFullName"]."</h1>"
 ?>
 
 </body>
