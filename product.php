@@ -1,10 +1,12 @@
 <?php
-
+session_start();
+$getURL =  $_SERVER["REQUEST_SCHEME"]."://".$_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI'];
 include("config.php");
 $getid = $_GET["id"];
-if(!isset($getid)) {
-    header("Location: index.php");  
+if (!isset($getid)) {
+    header("Location: index.php");
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -54,34 +56,46 @@ if(!isset($getid)) {
         <div class="col-md-8">
             <div class="row space-16">&nbsp;</div>
             <div class="row">
-                <?php 
-                    $qrySearchPro = "select * from tbl_product where product_status = 'Active' AND sub_cat_id = '".$getid."'";  // 0
-                    $resultPro = mysqli_query($con, $qrySearchPro);
-                    while ($RecordsPro =  mysqli_fetch_assoc($resultPro)) {
-                        
+                <?php
+                $qrySearchPro = "select * from tbl_product where product_status = 'Active' AND sub_cat_id = '" . $getid . "'";  // 0
+                $resultPro = mysqli_query($con, $qrySearchPro);
+                while ($RecordsPro =  mysqli_fetch_assoc($resultPro)) {
+
                 ?>
-                <div class="col-sm-4">
-                    <div class="thumbnail">
-                        <div class="caption text-center">
-                            <div class="position-relative">
-                                <img src="./product/iphone.png" style="width:200px;height:172px;" />
-                            </div>
-                            <h4 id="thumbnail-label"><a href="#"><?php echo $RecordsPro["product_name"]; ?></a></h4>
-                            <div class="thumbnail-description smaller">Ceramic Shield front
-                                Textured matte glass back and
-                                stainless steel design</div>
-                            </div>
-                            <div class="caption card-footer text-center">
-                                <ul class="list-inline">
-                                    <li><i class="people lighter">Price</i>&nbsp;<?php echo $RecordsPro["product_price"]; ?></li>
-                                    <li></li>
-                                    <li><a href="#">&nbsp;BUY</a></li>
-                                </ul>
+                    <form action="addtocart.php" method="post">
+                        <div class="col-sm-4">
+                            <div class="thumbnail">
+                                <div class="caption text-center">
+                                    <div class="position-relative">
+                                        <img src="<?= $RecordsPro["product_image"] ?>" style="width:200px;height:172px;" />
+                                    </div>
+                                    <h4 id="thumbnail-label"><a href="#"><?php echo $RecordsPro["product_name"]; ?></a></h4>
+                                    <div class="thumbnail-description smaller">Ceramic Shield front
+                                        Textured matte glass back and
+                                        stainless steel design</div>
+                                </div>
+                                <div class="caption card-footer text-center">
+                                    <ul class="list-inline">
+                                        <li><i class="people lighter">Price</i>&nbsp;<?php echo $RecordsPro["product_price"]; ?></li><br>
+                                        <li></li>
+                                        <li>
+                                            <input type="text" name="txturl" value="<?php echo $getURL; ?>">
+                                            <input type="hidden" name="txtid" value="<?php echo $RecordsPro["product_id"]; ?>">
+                                            <input type="hidden" name="txtname" value="<?php echo $RecordsPro["product_name"]; ?>">
+                                            <input type="hidden" name="txtprice" value="<?php echo $RecordsPro["product_price"]; ?>">
+                                            <input type="number" name="quantity" value="1">
+                                        </li>
+                                        <br>
+                                        <li>
+                                            <button type="submit" name="btnAddCart" class="btn btn-primary">BUY</button>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 <?php
-                    }
+                }
                 ?>
             </div>
             <div class="col-md-2">&nbsp;</div>

@@ -48,6 +48,10 @@
   }
 </style>
 
+<?php 
+$count = count($_SESSION["cart"]); 
+?>
+
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -98,7 +102,7 @@
     </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-
+      <li><a href="cartview.php"><span style="color: #fff; font-size: 12px; border: 2px solid red; padding: 5px; background-color: red; border-radius: 50%;"><?= $count; ?></span><span class="glyphicon glyphicon-shopping-cart"></span>Cart View</a></li>
 
       <?php
       if (isset($_SESSION["UserFullName"])) {
