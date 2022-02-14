@@ -48,8 +48,12 @@
   }
 </style>
 
-<?php 
-$count = count($_SESSION["cart"]); 
+<?php
+
+if (isset($_SESSION["cart"])) {
+  $count = count($_SESSION["cart"]);
+}
+
 ?>
 
 <nav class="navbar navbar-inverse">
@@ -102,7 +106,7 @@ $count = count($_SESSION["cart"]);
     </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="cartview.php"><span style="color: #fff; font-size: 12px; border: 2px solid red; padding: 5px; background-color: red; border-radius: 50%;"><?= $count; ?></span><span class="glyphicon glyphicon-shopping-cart"></span>Cart View</a></li>
+      <li><a href="cartview.php"><span style="color: #fff; font-size: 12px; border: 2px solid red; padding: 5px; background-color: red; border-radius: 50%;"><? if(isset($count)) { echo $count;} ?></span><span class="glyphicon glyphicon-shopping-cart"></span>Cart View</a></li>
 
       <?php
       if (isset($_SESSION["UserFullName"])) {
