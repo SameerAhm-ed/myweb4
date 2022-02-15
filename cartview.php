@@ -149,14 +149,14 @@ if (isset($_POST["btnClearAll"])) {
     ?>
             <div class="container">
                 <h1>Shipping Label</h1>
-                <form action="" method="post" class="form-horizontal">
+                <form action="checkout.php" method="post" class="form-horizontal">
                     <label for="">Name: </label>
                     <input type="text" name="name"><br><br>
                     <label for="">Address: </label>
                     <input type="text" name="address"><br><br>
                     <label for="">Contact: </label>
-                    <input type="tel" name="contact" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"><br><br>
-                    <input class="btn btn-success" type="button" value="Check Out">
+                    <input type="tel" name="contact"><br><br>
+                    <input class="btn btn-success" name="btncheck" type="submit" value="Check Out">
                 </form>
             </div>
     <?php
