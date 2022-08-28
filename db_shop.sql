@@ -63,10 +63,10 @@ CREATE TABLE `tbl_product` (
 --
 
 INSERT INTO `tbl_product` (`product_id`, `sub_cat_id`, `product_name`, `product_price`, `product_status`, `product_image`) VALUES
-(1, 1, 'Iphone 13 Pro MAX', '$1400', 'Active', 'product/iphone.png'),
-(2, 1, 'Iphone 13 Pro MAX', '$1400', 'Active', 'product/iphone.png'),
-(3, 1, 'Iphone 13 Pro MAX', '$1400', 'Active', 'product/iphone.png'),
-(4, 1, 'Iphone 13 Pro MAX', '$1400', 'Active', 'product/iphone.png');
+(1, 1, 'Iphone 13 Pro MAX', '1400', 'Active', 'product/iphone.png'),
+(2, 1, 'Iphone 13 Pro MAX', '1400', 'Active', 'product/iphone.png'),
+(3, 1, 'Iphone 13 Pro MAX', '1400', 'Active', 'product/iphone.png'),
+(4, 1, 'Iphone 13 Pro MAX', '1400', 'Active', 'product/iphone.png');
 
 -- --------------------------------------------------------
 
